@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  test-api:
+    container_name: test-api
+    # command: sh -c "npm install && npm run start:dev"
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: circleci-test-api
+    restart: unless-stopped
+    environment:
+      APP_PORT: 2910
+      NO_COLOR: true
+    volumes:
+      - /app/node_modules
+      - $PWD/dist:/app/dist
+      - $PWD/src:/app/src
+      - $PWD/package.json:/app/package.json
+      - $PWD/tsconfig.json:/app/tsconfig.json
+      - $PWD/tsconfig.build.json:/app/tsconfig.build.json
+    ports:
+      - 2910:2910
