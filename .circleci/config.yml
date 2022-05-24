@@ -5,22 +5,29 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+  build:
+    # machine: true
+    resource_class: jluiiizz/onemore
+    working_directory: ~/app
     docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+      - image: docker:20.10.16-git
     steps:
       - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+      # - setup_remote_docker
+      - run: 
+          name: Docker Build
+          command: | 
+            docker build -t circleci-test-api:latest .
+      - run: 
+          name: Show Docker Images
+          command: | 
+            docker images
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  build:
     jobs:
-      - say-hello
+      - build:
+          filters:
+            branches:
+              only:
+                master
