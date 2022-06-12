@@ -6,9 +6,10 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   build:
-    # machine: true
-    docker:
-      - image: cimg/base:current
+    machine: 
+      image: cimg/base
+    # docker:
+    #   - image: cimg/base:current
     resource_class: jluiiizz/hme
     working_directory: ~/app
     steps:
