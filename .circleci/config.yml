@@ -10,12 +10,13 @@ jobs:
     resource_class: jluiiizz/hme
     working_directory: ~/app
     docker:
-      - image: cimg/base
+      - image: docker:20.10.17-git
     steps:
       - checkout
       # - setup_remote_docker
       - setup_remote_docker:
           docker_layer_caching: true
+          version: 20.10.17
       - run: 
           name: Docker Build
           command: | 
