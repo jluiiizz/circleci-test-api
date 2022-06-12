@@ -7,10 +7,10 @@ version: 2.1
 jobs:
   build:
     # machine: true
-    resource_class: jluiiizz/hme
-    working_directory: ~/app
     docker:
       - image: cimg/base:current
+    resource_class: jluiiizz/hme
+    working_directory: ~/app
     steps:
       - checkout
       # - setup_remote_docker
