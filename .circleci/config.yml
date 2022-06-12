@@ -10,7 +10,7 @@ jobs:
     resource_class: jluiiizz/onemore
     working_directory: ~/app
     docker:
-      - image: docker:20.10.16-git
+      - image: cimg/base
     steps:
       - checkout
       # - setup_remote_docker
